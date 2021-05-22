@@ -30,29 +30,21 @@ class SpringSeleniumAppSimpleTests {
 
 	@Test
 	void shouldLogInWithCorrectCredentials() {
-		//Given I open the application log in page
 		webDriver.get(appUrl);
 		webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		//When I log in with correct credentials
 		loginPage.setLogInValues("Admin","admin123").clickLoginButton();
-		//Then User name is displayed
 		Assert.assertTrue(homePage.welcomeLink().isDisplayed(),"message");
-		//And Home page Url is correct
 		Assert.assertTrue(expectedUrl.equals(homePage.getHomePageUrl()),
 				"Actual is not equal to expected. " +
 						"Actual:" + homePage.getHomePageUrl() + ". Expected: " + expectedUrl);
 		webDriver.close();
 	}
 
-	//@Test
+	@Test
 	void shouldNotLogInWithIncorrectCredentials() {
-		//Given I opened the application log in page
-		//apiRunner.start(appUrl);
-		//When I log in with incorrect credentials
+
 		loginPage.setLogInValues("invalid","invalid").clickLoginButton();
-		//Then incorrect credentials message is displayed
 		System.out.println(loginPage.getSpanInvalidCredentials().getText());
 		Assert.assertTrue(loginPage.getSpanInvalidCredentials().isDisplayed());
-		//apiRunner.stop();
 	}
 }
