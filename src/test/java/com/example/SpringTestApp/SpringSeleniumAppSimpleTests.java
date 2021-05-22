@@ -42,7 +42,7 @@ class SpringSeleniumAppSimpleTests {
 
 	@Test
 	void shouldNotLogInWithIncorrectCredentials() {
-
+		webDriver.get(appUrl);
 		loginPage.setLogInValues("invalid","invalid").clickLoginButton();
 		System.out.println(loginPage.getSpanInvalidCredentials().getText());
 		Assert.assertTrue(loginPage.getSpanInvalidCredentials().isDisplayed());
